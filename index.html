@@ -1,0 +1,840 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#080808">
+    <meta name="description" content="Execution — Thrash Metal. Ouça as músicas oficiais da banda.">
+    <title>Execution — Tudo Sobre Nós | Thrash Metal</title>
+    <style>
+        :root {
+            color-scheme: dark;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #080808;
+            color: #f5f5f5;
+            font-synthesis: none;
+            text-rendering: optimizeLegibility;
+            --red: #e82424;
+            --red-dark: #4a1010;
+            --muted: #9b9b9b;
+            --panel: #121212;
+            --border: #242424;
+            --serif: Georgia, "Times New Roman", serif;
+        }
+
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; scroll-padding-top: 82px; }
+        body { margin: 0; min-width: 320px; padding-bottom: 76px; }
+        a { color: inherit; }
+        button, input { font: inherit; }
+        button { color: inherit; }
+        .wrap { width: min(100% - 44px, 1180px); margin-inline: auto; }
+        [hidden] { display: none !important; }
+
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 5;
+            border-bottom: 1px solid #351313;
+            background: #090909ed;
+            backdrop-filter: blur(12px);
+        }
+
+        .nav {
+            min-height: 68px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+        }
+
+        .brand { display: flex; align-items: center; gap: 10px; text-decoration: none; flex: 0 0 auto; }
+        .brand img { width: 40px; height: 40px; object-fit: contain; }
+        .brand strong { display: block; font-family: var(--serif); font-size: 1.15rem; line-height: 1; }
+        .brand span { color: var(--red); font-size: .56rem; font-weight: 700; letter-spacing: .13em; }
+        nav { display: flex; align-items: center; gap: clamp(12px, 2.4vw, 30px); }
+        nav a { color: #d3d3d3; font-size: .78rem; font-weight: 700; text-decoration: none; }
+        nav a:hover, nav a:focus-visible { color: var(--red); }
+        .nav-pit { color: var(--red); }
+
+        .hero {
+            position: relative;
+            min-height: 570px;
+            display: grid;
+            place-items: center;
+            overflow: hidden;
+            padding: 68px 0 76px;
+            border-bottom: 1px solid #351313;
+            text-align: center;
+            isolation: isolate;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            z-index: -1;
+            inset: 4% 12%;
+            background: url("logo.jpg") center / min(580px, 80vw) auto no-repeat;
+            opacity: .09;
+            filter: blur(3px);
+        }
+
+        .hero-content { display: grid; width: 100%; min-width: 0; justify-items: center; }
+        .hero-logo {
+            width: 154px;
+            height: 154px;
+            margin-bottom: 22px;
+            padding: 12px;
+            border: 1px solid #501515;
+            border-radius: 22px;
+            background: #111;
+            box-shadow: 0 0 34px #a50e0e25;
+            object-fit: contain;
+        }
+
+        .eyebrow {
+            margin: 0 0 8px;
+            color: var(--red);
+            font-size: .68rem;
+            font-weight: 800;
+            letter-spacing: .19em;
+            text-transform: uppercase;
+        }
+
+        .hero .eyebrow {
+            padding: 6px 12px;
+            border: 1px solid #601717;
+            border-radius: 99px;
+            background: #280b0b;
+            font-size: .62rem;
+            letter-spacing: .12em;
+        }
+
+        h1, h2, h3, p { margin-top: 0; }
+        h1 {
+            width: 100%;
+            max-width: 900px;
+            margin: 8px 0 18px;
+            font-family: var(--serif);
+            font-size: clamp(2.5rem, 8vw, 5.7rem);
+            font-weight: 900;
+            line-height: .98;
+            letter-spacing: -.035em;
+        }
+
+        h1 span { color: var(--red); }
+        .hero-copy { width: 100%; max-width: 690px; margin-bottom: 26px; color: #c3c3c3; font-size: .97rem; line-height: 1.7; }
+        .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 9px;
+            min-height: 44px;
+            padding: 0 20px;
+            border: 1px solid #333;
+            border-radius: 9px;
+            background: #151515;
+            color: #eee;
+            font-size: .75rem;
+            font-weight: 800;
+            letter-spacing: .04em;
+            text-decoration: none;
+            transition: transform .18s ease, background .18s ease, border-color .18s ease;
+        }
+
+        .button:hover { transform: translateY(-2px); border-color: #555; }
+        .button-primary { border-color: var(--red); background: var(--red); color: white; }
+        .button-primary:hover { border-color: #bd1717; background: #bd1717; }
+
+        section { padding: 72px 0; border-bottom: 1px solid #171717; }
+        .section-heading { margin-bottom: 28px; }
+        .section-heading h2 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(1.8rem, 4vw, 2.65rem);
+            line-height: 1.1;
+            text-transform: uppercase;
+        }
+
+        .section-heading.center { max-width: 760px; margin: 0 auto 34px; text-align: center; }
+        .section-heading.center .eyebrow { margin-bottom: 7px; }
+        .section-heading.center p:last-child { margin: 12px 0 0; color: var(--muted); font-size: .88rem; line-height: 1.6; }
+        .music-toolbar { display: flex; align-items: center; justify-content: space-between; gap: 18px; margin: 24px 0 12px; }
+        .music-count { margin: 0; color: var(--muted); font-size: .76rem; }
+        .music-actions { display: flex; align-items: center; gap: 12px; }
+        #track-search {
+            width: min(230px, 38vw);
+            min-height: 38px;
+            padding: 0 13px;
+            border: 1px solid #333;
+            border-radius: 99px;
+            outline: none;
+            background: #141414;
+            color: #eee;
+            font-size: .78rem;
+        }
+
+        #track-search:focus { border-color: var(--red); }
+        .play-all {
+            width: 42px;
+            height: 42px;
+            flex: 0 0 auto;
+            border: 0;
+            border-radius: 50%;
+            background: var(--red);
+            color: white;
+            font-size: 1rem;
+            cursor: pointer;
+        }
+
+        .play-all:disabled { opacity: .4; cursor: not-allowed; }
+        .track-list-head, .track {
+            display: grid;
+            grid-template-columns: 42px minmax(0, 1fr) 72px 46px;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .track-list-head {
+            min-height: 38px;
+            padding: 0 14px;
+            border-bottom: 1px solid var(--border);
+            color: #888;
+            font-size: .68rem;
+        }
+
+        .track-list-head span:last-child, .track-duration { text-align: right; }
+        .track {
+            min-width: 0;
+            min-height: 66px;
+            padding: 7px 14px;
+            border-bottom: 1px solid #1d1d1d;
+            border-radius: 7px;
+            transition: background .16s ease;
+        }
+
+        .track:hover, .track.is-current { background: #191313; }
+        .track-index { color: #888; font-size: .82rem; text-align: center; }
+        .track-main {
+            min-width: 0;
+            border: 0;
+            background: transparent;
+            text-align: left;
+            cursor: pointer;
+        }
+
+        .track-main strong { display: block; overflow: hidden; color: #eee; font-size: .86rem; font-weight: 600; text-overflow: ellipsis; white-space: nowrap; }
+        .track-main small { display: block; margin-top: 5px; color: #888; font-size: .68rem; }
+        .track.is-current .track-main strong, .track.is-current .track-index { color: #ff6262; }
+        .track-play {
+            width: 34px;
+            height: 34px;
+            justify-self: end;
+            border: 0;
+            border-radius: 50%;
+            background: transparent;
+            color: #ccc;
+            cursor: pointer;
+        }
+
+        .track-play:hover, .track-play:focus-visible { background: #321010; color: white; }
+        #track-status { margin: 0; padding: 16px; border: 1px solid #492020; border-radius: 9px; background: #180909; color: #e7bcbc; font-size: .83rem; line-height: 1.5; }
+
+        .member-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+        .member {
+            padding: 22px 18px;
+            border: 1px solid var(--border);
+            border-radius: 14px;
+            background: var(--panel);
+            text-align: center;
+        }
+
+        .member-icon {
+            display: grid;
+            width: 62px;
+            height: 62px;
+            place-items: center;
+            margin: 0 auto 16px;
+            border: 1px solid var(--red);
+            border-radius: 50%;
+            color: var(--red);
+            font-size: 1.4rem;
+        }
+
+        .member h3 { margin: 0 0 7px; font-family: var(--serif); font-size: 1rem; text-transform: uppercase; }
+        .member .role { margin-bottom: 10px; color: var(--red); font-size: .58rem; font-weight: 800; letter-spacing: .1em; text-transform: uppercase; }
+        .member p:last-child { margin: 0; color: var(--muted); font-size: .76rem; line-height: 1.6; }
+
+        .show-card, .community-card {
+            width: min(100%, 760px);
+            margin-inline: auto;
+            padding: 34px;
+            border: 1px solid var(--border);
+            border-radius: 16px;
+            background: var(--panel);
+            text-align: center;
+        }
+
+        .show-icon {
+            display: grid;
+            width: 56px;
+            height: 56px;
+            place-items: center;
+            margin: 0 auto 16px;
+            border: 1px solid #632020;
+            border-radius: 50%;
+            background: #1c0c0c;
+            color: var(--red);
+            font-size: 1.25rem;
+        }
+
+        .show-card h3, .community-card h3 { margin: 0 0 12px; font-family: var(--serif); font-size: 1.35rem; text-transform: uppercase; }
+        .show-card p, .community-card p { margin: 0 auto 16px; max-width: 610px; color: var(--muted); font-size: .84rem; line-height: 1.65; }
+        .coming-soon { display: inline-block; padding: 7px 12px; border: 1px solid #333; border-radius: 6px; color: #c1c1c1; font-family: monospace; font-size: .68rem; }
+        .community-card { width: min(100%, 900px); margin-bottom: 20px; }
+        .community-post { width: min(100%, 900px); margin-inline: auto; padding: 20px; border: 1px solid var(--border); border-radius: 14px; background: var(--panel); }
+        .community-post strong { display: block; margin-bottom: 8px; font-size: .84rem; }
+        .community-post p { margin: 0; color: #c4c4c4; font-size: .82rem; line-height: 1.6; }
+        .community-note { margin: 16px auto 0; color: #777; font-size: .72rem; text-align: center; }
+
+        footer { padding: 28px 0 100px; color: #777; font-size: .76rem; text-align: center; }
+
+        .player-bar {
+            position: fixed;
+            z-index: 10;
+            right: 0;
+            bottom: 0;
+            left: 0;
+            display: grid;
+            min-height: 88px;
+            grid-template-columns: minmax(170px, 1fr) minmax(280px, 1.25fr) minmax(130px, 1fr);
+            align-items: center;
+            gap: 28px;
+            padding: 10px max(22px, calc((100vw - 1180px) / 2)) 9px;
+            border-top: 1px solid #3c1717;
+            background: #0c0c0cf5;
+            backdrop-filter: blur(12px);
+        }
+
+        .player-track { display: flex; min-width: 0; align-items: center; gap: 12px; }
+        .player-art {
+            display: grid;
+            width: 42px;
+            height: 42px;
+            flex: 0 0 auto;
+            place-items: center;
+            overflow: hidden;
+            border: 1px solid #632020;
+            border-radius: 9px;
+            background: #151515;
+            color: var(--red);
+        }
+
+        .player-art img { width: 100%; height: 100%; object-fit: contain; }
+        .player-text { min-width: 0; }
+        .player-text strong { display: block; overflow: hidden; font-family: var(--serif); font-size: .78rem; text-overflow: ellipsis; white-space: nowrap; }
+        .player-text span { display: block; margin-top: 4px; color: var(--muted); font-family: monospace; font-size: .62rem; }
+        .player-center { display: grid; min-width: 0; gap: 5px; }
+        .player-controls { display: flex; align-items: center; justify-content: center; gap: 15px; }
+        .player-controls button {
+            display: grid;
+            width: 28px;
+            height: 28px;
+            place-items: center;
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: #aaa;
+            cursor: pointer;
+        }
+
+        .player-controls button:hover:not(:disabled) { color: white; }
+        .player-controls button:disabled { opacity: .35; cursor: not-allowed; }
+        #shuffle-toggle[aria-pressed="true"] { color: #ff6262; }
+        #player-toggle {
+            width: 34px;
+            height: 34px;
+            border-radius: 50%;
+            background: var(--red);
+            color: white;
+            font-size: .78rem;
+        }
+
+        #player-toggle:hover:not(:disabled) { transform: scale(1.06); background: #bd1717; }
+        .progress-row { display: grid; grid-template-columns: 36px minmax(0, 1fr) 36px; align-items: center; gap: 8px; }
+        .time-label { color: #858585; font-family: monospace; font-size: .62rem; text-align: center; }
+        #progress-control { width: 100%; height: 4px; accent-color: var(--red); cursor: pointer; }
+        .player-right { display: flex; align-items: center; justify-content: flex-end; gap: 10px; }
+        .volume-icon { color: var(--red); font-size: .8rem; }
+        #volume-control { width: 92px; accent-color: var(--red); }
+        #audio-player { display: none; }
+
+        @media (max-width: 860px) {
+            .nav { gap: 14px; }
+            nav { gap: 14px; }
+            nav a { font-size: .7rem; }
+            .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .player-bar { grid-template-columns: minmax(120px, 1fr) minmax(170px, 1.2fr) auto; gap: 10px; }
+            .player-right { display: none; }
+            .player-controls { gap: 8px; }
+        }
+
+        @media (max-width: 560px) {
+            .wrap { width: min(100% - 30px, 1180px); }
+            .nav { min-height: 60px; }
+            .brand img { width: 34px; height: 34px; }
+            .brand strong { font-size: .94rem; }
+            .brand span { font-size: .48rem; }
+            nav { gap: 12px; }
+            nav a { font-size: .66rem; }
+            nav a:nth-child(1), nav a:nth-child(4) { display: none; }
+            .hero { min-height: 520px; padding-block: 56px; }
+            .hero h1 { font-size: clamp(1.8rem, 9vw, 3.5rem); }
+            .hero-logo { width: 128px; height: 128px; }
+            .hero-copy { font-size: .88rem; }
+            .actions { width: 100%; }
+            .button { min-height: 42px; padding-inline: 14px; font-size: .67rem; }
+            section { padding: 56px 0; }
+            .member-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+            .member { padding: 18px 12px; }
+            .member h3 { font-size: .84rem; }
+            .member p:last-child { font-size: .7rem; }
+            .show-card, .community-card { padding: 26px 18px; }
+            .music-toolbar { align-items: flex-start; }
+            .music-actions { gap: 8px; }
+            #track-search { width: min(160px, 39vw); }
+            .track-list-head, .track { grid-template-columns: 25px minmax(0, 1fr) 42px; gap: 8px; }
+            .track-list-head span:nth-child(3), .track-duration { display: none; }
+            .track { min-height: 62px; padding-inline: 5px; }
+            .player-bar { min-height: 80px; grid-template-columns: minmax(0, 1fr) minmax(126px, auto); padding: 7px 12px; gap: 8px; }
+            .player-art { width: 34px; height: 34px; }
+            .player-track { gap: 8px; }
+            .player-text strong { font-size: .69rem; }
+            .player-text span { font-size: .56rem; }
+            .player-controls { gap: 4px; }
+            .player-controls button { width: 24px; height: 26px; }
+            #shuffle-toggle { display: none; }
+            #player-toggle { width: 32px; height: 32px; }
+            .progress-row { grid-template-columns: 28px minmax(0, 1fr) 28px; gap: 4px; }
+            .time-label { font-size: .55rem; }
+            .player-center { gap: 2px; }
+        }
+
+        @media (max-width: 360px) {
+            .wrap { width: min(100% - 24px, 1180px); }
+            .brand { gap: 6px; }
+            .brand img { width: 30px; height: 30px; }
+            .brand strong { font-size: .82rem; }
+            .brand span { font-size: .42rem; }
+            nav { gap: 9px; }
+            nav a { font-size: .6rem; }
+            nav .nav-pit { display: none; }
+            .hero h1 { font-size: 1.75rem; }
+            .hero-copy { font-size: .82rem; }
+            .music-toolbar { gap: 8px; }
+            #track-search { width: 118px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html { scroll-behavior: auto; }
+            *, *::before, *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="wrap nav">
+            <a class="brand" href="#inicio" aria-label="Execution — início">
+                <img src="logo.jpg" alt="">
+                <span><strong>EXECUTION</strong>TUDO SOBRE NÓS</span>
+            </a>
+            <nav aria-label="Navegação principal">
+                <a href="#inicio">Início</a>
+                <a href="#musicas">Músicas &amp; Estúdio</a>
+                <a href="#sobre">Sobre Nós</a>
+                <a href="#shows">Agenda</a>
+                <a class="nav-pit" href="#rede">The Pit</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero" id="inicio">
+            <div class="hero-content wrap">
+                <img class="hero-logo" src="logo.jpg" alt="Logo da banda Execution">
+                <p class="eyebrow">Thrash Metal Underground BR</p>
+                <h1>EXECUTION <span>— TUDO<br>SOBRE NÓS</span></h1>
+                <p class="hero-copy">A verdadeira carnificina do Thrash Metal nacional. Som cru, velocidade implacável e tudo sobre a Execution em um só lugar. Ouça as músicas oficiais e acompanhe a banda.</p>
+                <div class="actions">
+                    <a class="button button-primary" href="#musicas">▶ &nbsp;Ouvir músicas</a>
+                    <a class="button" href="#rede">✹ &nbsp;Conhecer a banda</a>
+                </div>
+            </div>
+        </section>
+
+        <section id="musicas">
+            <div class="wrap">
+                <div class="section-heading">
+                    <p class="eyebrow">Discografia &amp; lançamentos</p>
+                    <h2>Músicas oficiais</h2>
+                </div>
+                <div class="music-toolbar">
+                    <p class="music-count" id="music-count">Carregando faixas…</p>
+                    <div class="music-actions">
+                        <input id="track-search" type="search" placeholder="Buscar música" aria-label="Buscar música">
+                        <button class="play-all" id="play-all" type="button" aria-label="Tocar todas as músicas" title="Tocar todas as músicas" disabled>▶</button>
+                    </div>
+                </div>
+                <div class="track-list-head" aria-hidden="true">
+                    <span>#</span><span>Título</span><span>Duração</span><span>▶</span>
+                </div>
+                <div id="track-list" aria-live="polite"></div>
+                <p id="track-status" role="status">Carregando músicas…</p>
+            </div>
+        </section>
+
+        <section id="sobre">
+            <div class="wrap">
+                <div class="section-heading center">
+                    <p class="eyebrow">A história &amp; integrantes</p>
+                    <h2>Tudo sobre nós</h2>
+                    <p>Nascidos no underground, armados com distorção máxima e velocidade pura. Conheça a formação da Execution.</p>
+                </div>
+                <div class="member-grid">
+                    <article class="member">
+                        <div class="member-icon" aria-hidden="true">♬</div>
+                        <h3>Vocal &amp; guitarra</h3>
+                        <p class="role">Voz &amp; composição</p>
+                        <p>Voz, riffs e letras dão o tom pesado da banda.</p>
+                    </article>
+                    <article class="member">
+                        <div class="member-icon" aria-hidden="true">♬</div>
+                        <h3>Guitarra solo</h3>
+                        <p class="role">Harmonias &amp; solos</p>
+                        <p>Guitarras rápidas e melodias cortantes.</p>
+                    </article>
+                    <article class="member">
+                        <div class="member-icon" aria-hidden="true">◉</div>
+                        <h3>Baixo</h3>
+                        <p class="role">Peso &amp; frequência</p>
+                        <p>Graves que sustentam o peso e a velocidade do som.</p>
+                    </article>
+                    <article class="member">
+                        <div class="member-icon" aria-hidden="true">▤</div>
+                        <h3>Bateria</h3>
+                        <p class="role">Ritmo &amp; intensidade</p>
+                        <p>Batidas rápidas e energia sem freio.</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <section id="shows">
+            <div class="wrap">
+                <div class="section-heading center">
+                    <p class="eyebrow">Carnificina ao vivo</p>
+                    <h2>Agenda de shows</h2>
+                </div>
+                <div class="show-card">
+                    <div class="show-icon" aria-hidden="true">▦</div>
+                    <h3>Em breve</h3>
+                    <p>No momento, a Execution está focada em forjar novas músicas no estúdio. Fique atento: novidades serão anunciadas por aqui.</p>
+                    <span class="coming-soon">Novas datas serão anunciadas em breve</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="rede">
+            <div class="wrap">
+                <div class="section-heading center">
+                    <p class="eyebrow">The Pit — comunidade Execution</p>
+                    <h2>Rede social dos fãs</h2>
+                    <p>Um espaço para quem acompanha a banda e curte Thrash Metal.</p>
+                </div>
+                <div class="community-card">
+                    <h3>The Pit está sendo preparado</h3>
+                    <p>Por enquanto, este site fica simples: sem login de mentira e sem serviços externos. As novidades da banda e as músicas oficiais serão publicadas aqui.</p>
+                </div>
+                <article class="community-post">
+                    <strong>Execution &nbsp;·&nbsp; Aviso oficial</strong>
+                    <p>Estamos preparando este espaço e trabalhando nas próximas músicas. Volte em breve para conferir os lançamentos.</p>
+                </article>
+                <p class="community-note">Acompanhe as atualizações do site conforme novas músicas forem adicionadas ao repositório.</p>
+            </div>
+        </section>
+    </main>
+
+    <footer><div class="wrap">Execution · Site oficial</div></footer>
+
+    <aside class="player-bar" aria-label="Player de música">
+        <div class="player-track">
+            <div class="player-art"><img src="logo.jpg" alt=""></div>
+            <div class="player-text">
+                <strong id="player-title">Selecione uma música</strong>
+                <span id="player-album">Execution — Thrash Metal</span>
+            </div>
+        </div>
+        <div class="player-center">
+            <div class="player-controls">
+                <button id="shuffle-toggle" type="button" aria-label="Reprodução aleatória desligada" title="Reprodução aleatória" aria-pressed="false" disabled>⤨</button>
+                <button id="previous-track" type="button" aria-label="Faixa anterior" title="Faixa anterior" disabled>◂</button>
+                <button id="player-toggle" type="button" aria-label="Reproduzir" title="Reproduzir" disabled>▶</button>
+                <button id="next-track" type="button" aria-label="Próxima faixa" title="Próxima faixa" disabled>▸</button>
+            </div>
+            <div class="progress-row">
+                <span class="time-label" id="elapsed-time">0:00</span>
+                <input id="progress-control" type="range" min="0" max="0" step="0.1" value="0" aria-label="Progresso da música" disabled>
+                <span class="time-label" id="total-time">0:00</span>
+            </div>
+        </div>
+        <label class="player-right" for="volume-control">
+            <span class="volume-icon" aria-hidden="true">◖))</span>
+            <input id="volume-control" type="range" min="0" max="1" step="0.05" value="0.8" aria-label="Volume">
+        </label>
+    </aside>
+    <audio id="audio-player" preload="none"></audio>
+
+    <script>
+        const trackList = document.getElementById('track-list');
+        const trackStatus = document.getElementById('track-status');
+        const audioPlayer = document.getElementById('audio-player');
+        const playerTitle = document.getElementById('player-title');
+        const playerAlbum = document.getElementById('player-album');
+        const playerToggle = document.getElementById('player-toggle');
+        const previousButton = document.getElementById('previous-track');
+        const nextButton = document.getElementById('next-track');
+        const playAllButton = document.getElementById('play-all');
+        const trackSearch = document.getElementById('track-search');
+        const musicCount = document.getElementById('music-count');
+        const progressControl = document.getElementById('progress-control');
+        const elapsedTime = document.getElementById('elapsed-time');
+        const totalTime = document.getElementById('total-time');
+        const volumeControl = document.getElementById('volume-control');
+        const shuffleButton = document.getElementById('shuffle-toggle');
+        let tracks = [];
+        let currentTrackIndex = -1;
+        let isShuffleEnabled = false;
+
+        function setPlaybackState(playing) {
+            playerToggle.textContent = playing ? 'Ⅱ' : '▶';
+            playerToggle.setAttribute('aria-label', playing ? 'Pausar' : 'Reproduzir');
+            playerToggle.title = playing ? 'Pausar' : 'Reproduzir';
+        }
+
+        async function playTrack(index) {
+            if (index < 0 || index >= tracks.length) return;
+            currentTrackIndex = index;
+            const track = tracks[index];
+            audioPlayer.src = track.src;
+            progressControl.value = '0';
+            progressControl.max = '0';
+            elapsedTime.textContent = '0:00';
+            totalTime.textContent = '0:00';
+            playerTitle.textContent = track.title;
+            playerAlbum.textContent = 'Execution — Thrash Metal';
+            playerToggle.disabled = false;
+            previousButton.disabled = tracks.length < 2;
+            nextButton.disabled = tracks.length < 2;
+            updateCurrentTrack();
+            try {
+                await audioPlayer.play();
+            } catch (error) {
+                console.error('Não foi possível reproduzir a faixa:', error);
+                trackStatus.textContent = 'Não foi possível reproduzir esta faixa. Tente novamente.';
+                trackStatus.hidden = false;
+            }
+        }
+
+        function updateCurrentTrack() {
+            document.querySelectorAll('.track').forEach(row => {
+                const isCurrent = Number(row.dataset.trackIndex) === currentTrackIndex;
+                row.classList.toggle('is-current', isCurrent);
+                const playButton = row.querySelector('.track-play');
+                if (playButton) {
+                    playButton.textContent = isCurrent && !audioPlayer.paused ? 'Ⅱ' : '▶';
+                    playButton.setAttribute('aria-label', `${isCurrent && !audioPlayer.paused ? 'Pausar' : 'Tocar'} ${tracks[Number(row.dataset.trackIndex)].title}`);
+                }
+            });
+        }
+
+        function formatTime(seconds) {
+            if (!Number.isFinite(seconds)) return '0:00';
+            const minutes = Math.floor(seconds / 60);
+            const remainder = Math.floor(seconds % 60).toString().padStart(2, '0');
+            return `${minutes}:${remainder}`;
+        }
+
+        function renderTracks() {
+            const query = trackSearch.value.trim().toLocaleLowerCase('pt-BR');
+            const matches = tracks
+                .map((track, index) => ({ track, index }))
+                .filter(item => item.track.title.toLocaleLowerCase('pt-BR').includes(query));
+            trackList.replaceChildren();
+            matches.forEach(({ track, index }) => addTrack(track, index));
+            musicCount.textContent = query
+                ? `${matches.length} de ${tracks.length} faixas`
+                : `${tracks.length} ${tracks.length === 1 ? 'faixa' : 'faixas'}`;
+            if (tracks.length && !matches.length) {
+                trackStatus.textContent = 'Nenhuma música encontrada com esse nome.';
+                trackStatus.hidden = false;
+            } else if (tracks.length) {
+                trackStatus.hidden = true;
+            }
+            updateCurrentTrack();
+        }
+
+        function setShuffleState(enabled) {
+            isShuffleEnabled = enabled;
+            shuffleButton.setAttribute('aria-pressed', String(enabled));
+            shuffleButton.setAttribute('aria-label', `Reprodução aleatória ${enabled ? 'ligada' : 'desligada'}`);
+        }
+
+        function advanceTrack(direction) {
+            if (!tracks.length) return;
+            if (isShuffleEnabled && tracks.length > 1) {
+                let nextIndex = currentTrackIndex;
+                while (nextIndex === currentTrackIndex) {
+                    nextIndex = Math.floor(Math.random() * tracks.length);
+                }
+                playTrack(nextIndex);
+                return;
+            }
+            playTrack((currentTrackIndex + direction + tracks.length) % tracks.length);
+        }
+
+        function addTrack(track, index) {
+            const row = document.createElement('article');
+            row.className = 'track';
+            row.dataset.trackIndex = String(index);
+
+            const number = document.createElement('span');
+            number.className = 'track-index';
+            number.textContent = String(index + 1).padStart(2, '0');
+
+            const titleButton = document.createElement('button');
+            titleButton.className = 'track-main';
+            titleButton.type = 'button';
+            titleButton.addEventListener('click', () => playTrack(index));
+            const title = document.createElement('strong');
+            title.textContent = track.title;
+            const subtitle = document.createElement('small');
+            subtitle.textContent = 'Execution';
+            titleButton.append(title, subtitle);
+
+            const format = document.createElement('small');
+            format.className = 'track-duration';
+            format.textContent = '—:—';
+
+            const button = document.createElement('button');
+            button.className = 'track-play';
+            button.type = 'button';
+            button.textContent = '▶';
+            button.setAttribute('aria-label', `Tocar ${track.title}`);
+            button.addEventListener('click', () => {
+                if (currentTrackIndex === index && !audioPlayer.paused) {
+                    audioPlayer.pause();
+                } else {
+                    playTrack(index);
+                }
+            });
+            row.append(number, titleButton, format, button);
+            trackList.append(row);
+        }
+
+        async function loadTracks() {
+            try {
+                const response = await fetch('tracks.json', { cache: 'no-store' });
+                if (!response.ok) throw new Error(`Catálogo indisponível (${response.status}).`);
+
+                const catalog = await response.json();
+                if (!Array.isArray(catalog)) throw new Error('O catálogo de músicas tem um formato inválido.');
+                tracks = catalog.filter(track =>
+                    track &&
+                    typeof track.title === 'string' &&
+                    typeof track.src === 'string' &&
+                    /\.mp3$/i.test(track.src)
+                );
+
+                renderTracks();
+                playAllButton.disabled = !tracks.length;
+                shuffleButton.disabled = tracks.length < 2;
+                if (tracks.length) {
+                    playerToggle.disabled = false;
+                    previousButton.disabled = tracks.length < 2;
+                    nextButton.disabled = tracks.length < 2;
+                } else {
+                    trackStatus.textContent = 'Ainda não há MP3s. Adicione os arquivos à pasta musicas/ e envie as alterações para o GitHub.';
+                    trackStatus.hidden = false;
+                }
+            } catch (error) {
+                console.error('Não foi possível carregar as músicas:', error);
+                musicCount.textContent = 'Catálogo indisponível';
+                trackStatus.textContent = 'Não foi possível carregar o catálogo. Verifique a publicação do site no GitHub Pages.';
+                trackStatus.hidden = false;
+            }
+        }
+
+        async function togglePlayback() {
+            if (currentTrackIndex < 0 && tracks.length) {
+                await playTrack(0);
+            } else if (audioPlayer.paused) {
+                try {
+                    await audioPlayer.play();
+                } catch (error) {
+                    console.error('Não foi possível retomar a faixa:', error);
+                }
+            } else {
+                audioPlayer.pause();
+            }
+        }
+
+        playerToggle.addEventListener('click', togglePlayback);
+        previousButton.addEventListener('click', () => advanceTrack(-1));
+        nextButton.addEventListener('click', () => advanceTrack(1));
+        playAllButton.addEventListener('click', () => playTrack(0));
+        trackSearch.addEventListener('input', renderTracks);
+        shuffleButton.addEventListener('click', () => setShuffleState(!isShuffleEnabled));
+        audioPlayer.addEventListener('play', () => {
+            setPlaybackState(true);
+            updateCurrentTrack();
+        });
+        audioPlayer.addEventListener('pause', () => {
+            setPlaybackState(false);
+            updateCurrentTrack();
+        });
+        audioPlayer.addEventListener('loadedmetadata', () => {
+            progressControl.max = String(audioPlayer.duration || 0);
+            progressControl.disabled = !Number.isFinite(audioPlayer.duration);
+            totalTime.textContent = formatTime(audioPlayer.duration);
+            const row = trackList.querySelector(`[data-track-index="${currentTrackIndex}"] .track-duration`);
+            if (row) row.textContent = formatTime(audioPlayer.duration);
+        });
+        audioPlayer.addEventListener('timeupdate', () => {
+            if (!progressControl.matches(':active')) progressControl.value = String(audioPlayer.currentTime || 0);
+            elapsedTime.textContent = formatTime(audioPlayer.currentTime);
+        });
+        progressControl.addEventListener('input', () => {
+            if (Number.isFinite(audioPlayer.duration)) {
+                audioPlayer.currentTime = Number(progressControl.value);
+                elapsedTime.textContent = formatTime(audioPlayer.currentTime);
+            }
+        });
+        audioPlayer.addEventListener('ended', () => {
+            if (tracks.length > 1) advanceTrack(1);
+            else setPlaybackState(false);
+        });
+        audioPlayer.addEventListener('error', () => {
+            if (currentTrackIndex >= 0) {
+                trackStatus.textContent = 'Não foi possível carregar o arquivo MP3 desta faixa.';
+                trackStatus.hidden = false;
+            }
+        });
+        volumeControl.addEventListener('input', () => {
+            audioPlayer.volume = Number(volumeControl.value);
+        });
+        audioPlayer.volume = Number(volumeControl.value);
+        loadTracks();
+    </script>
+</body>
+</html>
