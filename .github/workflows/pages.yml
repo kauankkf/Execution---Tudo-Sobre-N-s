@@ -28,6 +28,64 @@ jobs:
 
       - name: Configure GitHub Pages
         uses: actions/configure-pages@v5
+        with:
+          enablement: true
+
+      - name: Build music catalog from MP3 files
+        run: |
+          node <<'NODE'
+          const fs = require('node:fs');
+          const path = require('node:path');
+          const directory = 'musicas';
+          fs.mkdirSync(directory, { recursive: true });
+          const tracks = fs.readdirSync(directory, { withFileTypes: true })
+            .filter(entry => entry.isFile() && /\.mp3$/i.test(entry.name))
+            .sort((a, b) => a.name.localeCompare(b.name, 'pt-BR', { numeric: true, sensitivity: 'base' }))
+            .map(entry => ({
+              title: path.parse(entry.name).name,
+              src: `${directory}/${encodeURIComponent(entry.name)}`
+            }));
+          fs.writeFileSync('tracks.json', `${JSON.stringify(tracks, null, 2)}\n`);
+          console.log(`Cataloged ${tracks.length} MP3 file(s).`);
+          NODE
+
+      - name: Upload website
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: .
+
+      - name: Publish website
+        id: deployment
+        uses: actions/deploy-pages@v4name: Publish site to GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+      - master
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out site
+        uses: actions/checkout@v4
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v5
 
       - name: Build music catalog from MP3 files
         run: |
